@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html id="ie8" lang="en">
+<![endif]-->
+<!--[if !(IE 8)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Coordinated Web Controllers: A Reusable Asset by Jim Conallen | PhillyJUG</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://phillyjug.com/xmlrpc.php" />
+<!--[if lt IE 9]>
+<script src="https://s0.wp.com/wp-content/themes/pub/ari/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+
+		<script src='https://r-login.wordpress.com/remote-login.php?action=js&amp;host=phillyjug.com&amp;id=48900262&amp;t=1472860187&amp;back=https%3A%2F%2Fphillyjug.com%2F2002%2F09%2F24%2Fconallen%2F' type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel="alternate" type="application/rss+xml" title="PhillyJUG &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PhillyJUG &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PhillyJUG &raquo; Coordinated Web Controllers: A Reusable Asset by Jim&nbsp;Conallen Comments Feed" href="feed/index.html" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/s0.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1461081265h&ver=4.5.3-20160628"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;if(!g||!g.fillText)return!1;switch(g.textBaseline="top",g.font="600 32px Arial",a){case"flag":return g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3;case"diversity":return g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,d=c[0]+","+c[1]+","+c[2]+","+c[3],g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e;case"simple":return g.fillText(h(55357,56835),0,0),0!==g.getImageData(16,16,1,1).data[0];case"unicode8":return g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='all-css-0' href='https://s2.wp.com/_static/??-eJx9kOFqwzAMhF9onigZ6a+yZ3EczXErRSKSCX37OSujkJb8EbrjPg4JVg1JZsfZgWtQqrnMBqsm4WBcCO879ZnMPuA9RuWGBld0jekW/tRLfCDJT0ByxlGqhx8hkhXWMmb0o44FKTqOQcV8p46wJAs2nzX6lmAcS0RCbrEjjLX/p7Z1ancd1jxeNQy6oFlok0vl4FMreuUeNmgdIC4FzO+EW+ibL6evvjv1567vrr/fhp0p' type='text/css' media='all' />
+<link rel='stylesheet' id='ari-droid-sans-css'  href='https://fonts.googleapis.com/css?family=Droid+Sans%3A400%2C700&#038;ver=4.5.3-20160628' type='text/css' media='all' />
+<link rel='stylesheet' id='ari-droid-serif-css'  href='https://fonts.googleapis.com/css?family=Droid+Serif%3A400%2C700%2C400italic%2C700italic&#038;ver=4.5.3-20160628' type='text/css' media='all' />
+<link rel='stylesheet' id='all-css-4' href='https://s2.wp.com/_static/??-eJx9i8sKgCAQAH8oWwSjOkTfYmLLhrrig34/u0Rdus3ADBAELmQ45Ad6k3MHZxRNig0FfBXRVaTWoGXh2OhCHD4idqcp/a3Jbo6xIUKrXnpPq1+kGmalplGq4wKxyTcd' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-5' href='https://s0.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h' type='text/css' media='print' />
+<link rel='stylesheet' id='all-css-6' href='https://s1.wp.com/_static/??-eJxti0EKgCAQRS+UTYXUKjqLiakxOuIoXb9atIhaPD4P/oMjCU2xmFggVJGwWh8ZEnERGyqfgZ3KPtpnW83cwH/FpL1CgWTpLZ+oOBMMg5NgkVaF92EJcy/H7mKYhv0EZOQ3yA==' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s2.wp.com/_static/??-eJyFj+sKwjAMhV/Irnib+kN8ll2ykto2tWkt+vR2oIJzKARy+84hkdkLdJ1JPbDUJS4Jwu2ZKs0L+QsQFlVoIlQW3QvuyEVwcWQttWhAJIbQqDIrRgPNcJ44WmAu0Mz28yR0V4T8F9MQfdOdRQDG+5dra0gJb5JCx7LUCnpKUQxkDGWZsVcQpxqb3ooApjzdi/HuSVdUJ3tcbup6u1ofdnv9AHH5hGE='></script>
+<link rel='stylesheet' id='all-css-0' href='https://s1.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1377793621h' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s1.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://phillyjug.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Using OMG&#8217;s Model Driven Architecture (MDA) to Build J2EE Applications by Tom&nbsp;Shore' href='../../../06/18/shoremda/index.html' />
+<link rel='next' title='What&#8217;s New in J2EE 1.4?  (Web Services and more) by Erin&nbsp;Mulder' href='../../../10/30/emulder/index.html' />
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='http://wp.me/s3jbbU-conallen' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=https%3A%2F%2Fphillyjug.com%2F2002%2F09%2F24%2Fconallen%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=https%3A%2F%2Fphillyjug.com%2F2002%2F09%2F24%2Fconallen%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Coordinated Web Controllers: A Reusable Asset by Jim Conallen" />
+<meta property="og:url" content="https://phillyjug.com/2002/09/24/conallen/" />
+<meta property="og:description" content="Sponsored by RIP Rational Software (acquired by IBM, 2003) ABSTRACT: Coordinated Web Controllers: A Reusable Asset Coordinated Web Controller is a collection of code, models, and patterns that coll…" />
+<meta property="article:published_time" content="2002-09-24T23:33:54+00:00" />
+<meta property="article:modified_time" content="2013-03-24T21:48:41+00:00" />
+<meta property="og:site_name" content="PhillyJUG" />
+<meta property="og:image" content="https://phillyjug.files.wordpress.com/2002/09/imgres-3.jpeg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:image" content="https://phillyjug.files.wordpress.com/2002/09/imgres-3.jpeg?w=240" />
+<meta name="twitter:card" content="summary" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+<link rel="shortcut icon" type="image/x-icon" href="https://s2.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s2.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon-precomposed" href="https://s0.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://phillyjug.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://phillyjug.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="../../../../osd.xml" title="PhillyJUG" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+	<style>
+		/* First link color */
+		a,
+		.comment-meta a:hover,
+		.entry-meta a:hover,
+		.entry-title a:hover,
+		.logged-in-as a:hover,
+		.main-navigation a:hover,
+		.main-navigation li.current_page_item > a,
+		.main-navigation li.current_page_ancestor > a,
+		.main-navigation li.current-menu-item > a,
+		.main-navigation li.current-menu_ancestor > a,
+		.post-edit-link:hover,
+		.site-footer a:hover,
+		.widget a:hover,
+		.widget_flickr #flickr_badge_uber_wrapper a:hover {
+			color: #6a56f5;
+		}
+		.bypostauthor .avatar,
+		button:hover,
+		html input[type="button"]:hover,
+		input[type="reset"]:hover,
+		input[type="submit"]:hover,
+		.widget_calendar #wp-calendar tbody td a {
+			background: #6a56f5;
+		}
+	</style>
+<style>
+.milestone-widget {
+	margin-bottom: 1em;
+}
+.milestone-content {
+	line-height: 2;
+	margin-top: 5px;
+	max-width: 17em;
+	padding: 0;
+	text-align: center;
+}
+.milestone-header {
+	background-color: #4c4c4c;
+	color: #ffffff;
+	line-height: 1.3;
+	margin: 0;
+	padding: .8em;
+}
+.milestone-header .event,
+.milestone-header .date {
+	display: block;
+}
+.milestone-header .event {
+	font-size: 120%;
+}
+.milestone-countdown .difference {
+	display: block;
+	font-size: 500%;
+	font-weight: bold;
+	line-height: 1.2;
+}
+.milestone-countdown,
+.milestone-message {
+	background-color: #ffffff;
+	border: 1px solid #4c4c4c;
+	border-top: 0;
+	color: #4c4c4c;
+	padding-bottom: 1em;
+}
+.milestone-message {
+	padding-top: 1em
+}
+</style>
+<meta name="application-name" content="PhillyJUG" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="talking Java + killing pizza since 2000" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://phillyjug.com/feed/;icon-uri=https://s2.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s2.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s2.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s2.wp.com/i/favicon.ico" /><meta name="title" content="Coordinated Web Controllers: A Reusable Asset by Jim&nbsp;Conallen | PhillyJUG on WordPress.com" />
+<meta name="description" content="Sponsored by RIP Rational Software (acquired by IBM, 2003) ABSTRACT: Coordinated Web Controllers: A Reusable Asset Coordinated Web Controller is a collection of code, models, and patterns that collectively represent a reusable asset. An asset is a solution to a recurring problem that has been specifically tailored for reuse. This particular asset is targeted for applications that&hellip;" />
+	<style type="text/css">
+			.site-title a {
+			color: #3a4899;
+		}
+		</style>
+	<link rel="amphtml" href="amp/index.html" /><style type="text/css" id="syntaxhighlighteranchor"></style>
+		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s1.wp.com/?custom-css=1&#038;csblog=3jbbU&#038;cscache=6&#038;csrev=14" />
+		</head>
+
+<body class="single single-post postid-354 single-format-standard mp6 customizer-styles-applied color-light highlander-enabled highlander-light">
+<div id="page" class="hfeed site clear-fix">
+	
+	<div id="subsidiary">
+		<header id="masthead" class="site-header" role="banner">
+			<hgroup>
+				<h1 class="site-title"><a href="../../../../index.html" title="PhillyJUG" rel="home">PhillyJUG</a></h1>
+				<h2 class="site-description">talking Java + killing pizza since 2000</h2>
+			</hgroup>
+					</header><!-- #masthead .site-header -->
+		
+	<nav role="navigation" class="site-navigation main-navigation">
+		<h1 class="assistive-text">Menu</h1>
+		<div class="assistive-text skip-link"><a href="index.html#content" title="Skip to content">Skip to content</a></div>
+
+		<div class="menu-main-container"><ul id="menu-main" class="menu"><li id="menu-item-668" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-668"><a href="../../../../index.html">Home</a></li>
+<li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="../../../../about/index.html">About</a></li>
+<li id="menu-item-559" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-559"><a href="../../../../meetings/index.html">Past Meetings</a>
+<ul class="sub-menu">
+	<li id="menu-item-570" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-570"><a href="../../../../meetings/year/index.html">By Year</a></li>
+	<li id="menu-item-568" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-568"><a href="../../../../meetings/by-subject/index.html">By Subject</a></li>
+	<li id="menu-item-569" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-569"><a href="../../../../meetings/by-speaker/index.html">By Speaker</a></li>
+	<li id="menu-item-817" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-817"><a href="../../../../meetings/all-meetings/index.html">All Meetings (infinite scroll)</a></li>
+</ul>
+</li>
+<li id="menu-item-15" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15"><a href="../../../../contact/index.html">Contact</a></li>
+<li id="menu-item-697" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-697"><a href="../../../../book-reviews/index.html">Book Reviews</a></li>
+<li id="menu-item-859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-859"><a href="../../../../acknowledgements/index.html">Acknowledgements</a></li>
+</ul></div>	</nav>
+
+	<div id="secondary" class="widget-area" role="complementary">
+				<aside id="milestone_widget-2" class="widget milestone-widget"><h1 class="widget-title">Next Meeting</h1><div class="milestone-content"><div class="milestone-header"><strong class="event">JavaSE.Next - Java SE 8, 9, and Beyond (see Meetup for details on this two day event)</strong><span class="date">September 13th, 2016</span></div><div class="milestone-countdown"><span class="difference">11</span> <span class="label">days</span> to go.</div></div><!--milestone-content--></aside><aside id="text-3" class="widget widget_text">			<div class="textwidget">Philly JUG site sponsored by <a href="http://fecak.com"> Fecak Inc.</a></div>
+		</aside>	</div><!-- #secondary .widget-area -->
+	</div>
+
+	<div id="main" class="clear-fix">
+		<div id="primary" class="site-content">
+			<div id="content" role="main">
+
+			
+				
+<article id="post-354" class="clear-fix post-354 post type-post status-publish format-standard hentry category-meetings">
+	
+	<header class="entry-header">
+					<h1 class="entry-title">Coordinated Web Controllers: A Reusable Asset by Jim&nbsp;Conallen</h1>
+			</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<h4 style="text-align:center;"><em><strong>Sponsored by</strong></em> <a href="https://phillyjug.files.wordpress.com/2002/09/imgres-3.jpeg"><img class="aligncenter size-full wp-image-921" alt="Rational" src="https://phillyjug.files.wordpress.com/2002/09/imgres-3.jpeg?w=450"   /></a>RIP Rational Software (acquired by IBM, 2003)</h4>
+<p><strong>ABSTRACT: </strong><em>Coordinated Web Controllers: A Reusable Asset</em></p>
+<p>Coordinated Web Controller is a collection of code, models, and patterns that collectively represent a reusable asset. An asset is a solution to a recurring problem that has been specifically tailored for reuse. This particular asset is targeted for applications that use the Sun J2EE Design Pattern ‘Front Controller’ pattern. It extends this pattern with a mechanism for managing multiple concurrent controllers. The asset is packaged in with the Reusable Asset Specification (RAS), an emerging industry standard that is currently being developed by such companies as IBM, Microsoft, ComponentSource, Merrill Lynch and Rational. RAS is a set of concepts, notations and guidelines for describing the reusable assets of software systems. This specification provides the means for publishing this controller asset. This presentation examines the Coordinated Web Controller asset as it is published in RAS form. The CWC asset was first introduced in the second edition of Jim Conallen’s book ‘Building Web Applications with UML.’ Jim will present the details of this RAS asset and explain both the asset itself and its packaging.</p>
+<p><strong>SPEAKER BIO: </strong><em>Jim Conallen</em><strong><em><br />
+</em></strong></p>
+<p>Jim Conallen is a self proclaimed ‘techno-geek’, currently working for Rational Software Corporation. He specializes in web application development and UMLmodeling. He is the author of numerous print and online articles and two editions of the book ‘Building Web Applications with UML.’ Jim is currently involved with the development of the Reusable Asset Specification (RAS), a industry effort at standardizing the packaging and management of reusable software development assets. Jim is a native of the Delaware Valley and has graduate and undergraduate degrees from  Widener University in Computer and Software Engineering.</p>
+<p><strong>MEETING SLIDES:<br />
+<a href="https://phillyjug.files.wordpress.com/2013/03/cwc.pdf">CWC Slides PDF</a><br />
+</strong></p>
+<div id="jp-post-flair" class="sharedaddy sd-rating-enabled sd-like-enabled sd-sharing-enabled"><div class="sd-block sd-rating"><h3 class="sd-title">Rate this:</h3><div class="pd-rating" id="pd_rating_holder_6711309_post_354"></div></div><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-354" class="share-twitter sd-button share-icon" href="index.html%3Fshare=twitter.html" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-354" class="share-facebook sd-button share-icon" href="index.html%3Fshare=facebook.html" target="_blank" title="Share on Facebook"><span>Facebook</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-48900262-354-57ca101bab2c9' data-src='//widgets.wp.com/likes/#blog_id=48900262&amp;post_id=354&amp;origin=phillyjug.wordpress.com&amp;obj_id=48900262-354-57ca101bab2c9' data-name='like-post-frame-48900262-354-57ca101bab2c9'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>			</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+					<span class="posted-on">
+				<span class="post-date"><a href="index.html" title="11:33 pm" rel="bookmark"><time class="entry-date" datetime="2002-09-24T23:33:54+00:00" pubdate>September 24, 2002</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="../../../../author/fecak/index.html" title="View all posts by fecak" rel="author">fecak</a></span></span>			</span>
+			
+					
+				<span class="sep"> | </span>
+		<span class="comments-link"><a href="index.html#respond">Leave a comment</a></span>
+		
+		
+			</footer><!-- #entry-meta -->
+</article><!-- #post-354 -->
+
+					<nav role="navigation" id="nav-below" class="site-navigation post-navigation">
+		<h1 class="assistive-text">Post navigation</h1>
+
+	
+		<div class="nav-previous"><a href="../../../06/18/shoremda/index.html" rel="prev"><span class="meta-nav">&larr;</span> Using OMG&#8217;s Model Driven Architecture (MDA) to Build J2EE Applications by Tom&nbsp;Shore</a></div>		<div class="nav-next"><a href="../../../10/30/emulder/index.html" rel="next">What&#8217;s New in J2EE 1.4?  (Web Services and more) by Erin&nbsp;Mulder <span class="meta-nav">&rarr;</span></a></div>
+	
+	</nav><!-- #nav-below -->
+	
+					<div id="comments" class="comments-area">
+	
+	
+	
+	
+					<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Cancel reply</a></small></h3>				<form action="https://phillyjug.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+					<input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="f3361e2ce7" /><input type="hidden" name="_wp_http_referer" value="/2002/09/24/conallen/" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="index.html#comment-form-guest" id="postas-guest" title="Guest">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="index.html#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="index.html#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="index.html#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook">
+					<span></span>
+				</a>
+			</li>
+			<li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=retro&amp;forcedefault=y&amp;r=PG" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text" value="" /></div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=retro&amp;forcedefault=y&amp;r=PG" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your WordPress.com account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="index.html#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=retro&amp;forcedefault=y&amp;r=PG" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="index.html#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=retro&amp;forcedefault=y&amp;r=PG" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="index.html#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=retro&amp;forcedefault=y&amp;r=PG" alt="Google+ photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+				<p class="comment-form-posting-as pa-googleplus"><strong></strong> You are commenting using your Google+ account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="index.html#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit"><input name="submit" type="submit" id="comment-submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='354' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="f3adf31695" /></p>
+<input type="hidden" name="genseq" value="1472860187" />
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="27"/></p>				</form>
+					</div><!-- #respond -->
+		<div style="clear: both"></div>
+</div><!-- #comments .comments-area -->
+
+			
+			</div><!-- #content -->
+		</div><!-- #primary .site-content -->
+
+
+	<div id="tertiary" class="widget-area" role="complementary">
+				<aside id="image-3" class="widget widget_image"><div style="overflow:hidden;"><img src="https://phillyjug.files.wordpress.com/2013/03/philly_jug_link.gif?w=89&amp;h=32" alt="JUG logo" class="aligncenter" width="89" height="32" /></div>
+</aside><aside id="image-4" class="widget widget_image"><div style="overflow:hidden;"><div style="width: 164px" class="wp-caption aligncenter"><a href="http://www.linkedin.com/groups/Philadelphia-Area-Java-Users-Group-4197757/about"><img src="https://phillyjug.files.wordpress.com/2013/03/imgres2.jpeg?w=154&amp;h=31" alt="Join Our LinkedIn Group" width="154" height="31" /></a><p class="wp-caption-text">Members only</p></div></div>
+</aside><aside id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="../../../../index.html">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></aside>		<aside id="recent-posts-4" class="widget widget_recent_entries">		<h1 class="widget-title">Recent Events</h1>		<ul>
+					<li>
+				<a href="../../../../2016/05/11/vancurafuturejava/index.html">Participate in the Future of Java by Heather&nbsp;VanCura</a>
+							<span class="post-date">May 11, 2016</span>
+						</li>
+					<li>
+				<a href="../../../../2016/04/27/sparkoneill/index.html">Real Time Analytics with Spark Streaming by Brian&nbsp;O&#8217;Neill</a>
+							<span class="post-date">April 27, 2016</span>
+						</li>
+					<li>
+				<a href="../../../../2016/03/22/msbenz/index.html">Enhance Your Career by Stealing Microsoft&#8217;s Code by Brian&nbsp;Benz</a>
+							<span class="post-date">March 22, 2016</span>
+						</li>
+					<li>
+				<a href="../../../../2015/11/18/traviswear/index.html">Getting Started With Android Wear by Travis&nbsp;Himes</a>
+							<span class="post-date">November 18, 2015</span>
+						</li>
+					<li>
+				<a href="../../../../2015/11/03/premboot/index.html">Succeeding With Spring Boot by Prem&nbsp;Chandrasekaran</a>
+							<span class="post-date">November 3, 2015</span>
+						</li>
+				</ul>
+		</aside>		<aside id="archives-2" class="widget widget_archive"><h1 class="widget-title">Past meetings</h1>		<label class="screen-reader-text" for="archives-dropdown-2">Past meetings</label>
+		<select id="archives-dropdown-2" name="archive-dropdown" onchange='document.location.href=this.options[this.selectedIndex].value;'>
+			
+			<option value="">Select Month</option>
+				<option value='https://phillyjug.com/2016/05/'> May 2016 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2016/04/'> April 2016 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2016/03/'> March 2016 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2015/11/'> November 2015 &nbsp;(2)</option>
+	<option value='https://phillyjug.com/2015/06/'> June 2015 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2014/12/'> December 2014 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2014/11/'> November 2014 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2014/05/'> May 2014 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2014/04/'> April 2014 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2014/03/'> March 2014 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2014/02/'> February 2014 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2014/01/'> January 2014 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2013/11/'> November 2013 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2013/10/'> October 2013 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2013/09/'> September 2013 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2013/06/'> June 2013 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2013/05/'> May 2013 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2013/04/'> April 2013 &nbsp;(2)</option>
+	<option value='https://phillyjug.com/2013/03/'> March 2013 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2012/11/'> November 2012 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2012/10/'> October 2012 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2012/06/'> June 2012 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2012/05/'> May 2012 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2012/04/'> April 2012 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2012/03/'> March 2012 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2012/02/'> February 2012 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2011/12/'> December 2011 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2011/10/'> October 2011 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2011/06/'> June 2011 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2011/04/'> April 2011 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2011/02/'> February 2011 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2010/12/'> December 2010 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2010/11/'> November 2010 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2010/06/'> June 2010 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2010/05/'> May 2010 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2010/04/'> April 2010 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2010/03/'> March 2010 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2010/01/'> January 2010 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2009/12/'> December 2009 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2009/11/'> November 2009 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2009/10/'> October 2009 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2009/06/'> June 2009 &nbsp;(2)</option>
+	<option value='https://phillyjug.com/2009/04/'> April 2009 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2009/03/'> March 2009 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2009/02/'> February 2009 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2008/10/'> October 2008 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2008/09/'> September 2008 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2008/07/'> July 2008 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2008/06/'> June 2008 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2008/04/'> April 2008 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2008/03/'> March 2008 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2008/02/'> February 2008 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2007/12/'> December 2007 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2007/11/'> November 2007 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2007/10/'> October 2007 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2007/09/'> September 2007 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2007/06/'> June 2007 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2007/05/'> May 2007 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2007/04/'> April 2007 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2007/03/'> March 2007 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2007/02/'> February 2007 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2006/12/'> December 2006 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2006/10/'> October 2006 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2006/09/'> September 2006 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2006/06/'> June 2006 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2006/04/'> April 2006 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2006/03/'> March 2006 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2006/02/'> February 2006 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2005/12/'> December 2005 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2005/11/'> November 2005 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2005/10/'> October 2005 &nbsp;(2)</option>
+	<option value='https://phillyjug.com/2005/07/'> July 2005 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2005/05/'> May 2005 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2005/02/'> February 2005 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2004/12/'> December 2004 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2004/10/'> October 2004 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2004/08/'> August 2004 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2004/05/'> May 2004 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2004/03/'> March 2004 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2004/02/'> February 2004 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2004/01/'> January 2004 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2003/11/'> November 2003 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2003/05/'> May 2003 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2003/03/'> March 2003 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2002/10/'> October 2002 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2002/09/'> September 2002 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2002/06/'> June 2002 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2002/05/'> May 2002 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2002/04/'> April 2002 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2002/02/'> February 2002 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2001/12/'> December 2001 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2001/11/'> November 2001 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2001/08/'> August 2001 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2001/07/'> July 2001 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2001/06/'> June 2001 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2001/05/'> May 2001 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2001/02/'> February 2001 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2000/11/'> November 2000 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2000/09/'> September 2000 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2000/08/'> August 2000 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2000/06/'> June 2000 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2000/05/'> May 2000 &nbsp;(1)</option>
+	<option value='https://phillyjug.com/2000/04/'> April 2000 &nbsp;(1)</option>
+
+		</select>
+		</aside><aside id="image-5" class="widget widget_image"><div style="overflow:hidden;"><a href="http://www.oreilly.com/store/"><img src="https://phillyjug.files.wordpress.com/2013/09/ug_discount_125x125.gif?w=125&amp;h=125" alt="O&#039;Reilly Discount" class="alignnone" width="125" height="125" /></a></div>
+</aside>	</div><!-- #tertiary .widget-area -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+						<a href="https://https://wordpress.com//?ref=footer_blog">Blog at WordPress.com.</a>
+			
+					</div><!-- .site-info -->
+	</footer><!-- .site-footer .site-footer -->
+</div><!-- #page .hfeed .site -->
+
+<!-- wpcom_wp_footer -->
+<script type='text/javascript' src='https://0.gravatar.com/js/gprofiles.js?ver=201635y'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1380573781h'></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+
+			if (typeof Gravatar === "undefined"){
+				return;
+			}
+
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	</div>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/phillyjug.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/phillyjug.wordpress.com\/wp-login.php?action=logout&_wpnonce=b2c458e3b8","homeURL":"https:\/\/phillyjug.com\/","postID":"354","gravDefault":"retro","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"0","text_direction":"ltr"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s0.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1462457903j'></script>
+
+	<div id="bit" class="loggedout-follow-normal">
+		<a class="bsub" href="javascript:void(0)"><span id='bsub-text'>Follow</span></a>
+		<div id="bitsubscribe">
+
+					<h3><label for="loggedout-follow-field">Follow &ldquo;PhillyJUG&rdquo;</label></h3>
+
+			<form action="https://subscribe.wordpress.com" method="post" accept-charset="utf-8" id="loggedout-follow">
+			<p>Get every new post delivered to your Inbox.</p>
+
+			<p id="loggedout-follow-error" style="display: none;"></p>
+
+			
+			<p><input type="email" name="email" placeholder="Enter your email address" id="loggedout-follow-field"/></p>
+
+			<input type="hidden" name="action" value="subscribe"/>
+			<input type="hidden" name="blog_id" value="48900262"/>
+			<input type="hidden" name="source" value="https://phillyjug.com/2002/09/24/conallen/"/>
+			<input type="hidden" name="sub-type" value="loggedout-follow"/>
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="6cf3e3f0a1" /><input type="hidden" name="_wp_http_referer" value="/2002/09/24/conallen/" />
+			<p id='bsub-subscribe-button'><input type="submit" value="Sign me up" /></p>
+			</form>
+					<div id='bsub-credit'><a href="https://wordpress.com/?ref=lof">Build a website with WordPress.com</a></div>
+		</div><!-- #bitsubscribe -->
+	</div><!-- #bit -->
+<script type='text/javascript' charset='UTF-8' id='polldaddyRatings'><!--//--><![CDATA[//><!--
+PDRTJS_settings_6711309_post_354={"id":6711309,"unique_id":"wp-post-354","title":"Coordinated%20Web%20Controllers%3A%20A%20Reusable%20Asset%20by%20Jim%26nbsp%3BConallen","permalink":"https:\/\/phillyjug.com\/2002\/09\/24\/conallen\/","item_id":"_post_354"}; if ( typeof PDRTJS_RATING !== 'undefined' ){if ( typeof PDRTJS_6711309_post_354 == 'undefined' ){PDRTJS_6711309_post_354 = new PDRTJS_RATING( PDRTJS_settings_6711309_post_354 );}}
+//--><!]]></script><script type='text/javascript' charset='UTF-8' src='https://polldaddy.com/js/rating/rating.js'></script>
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/phillyjug.com\/2002\/09\/24\/conallen\/":354};
+	</script>
+		<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+		<script type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/akismet-3.0/_inc/form.js?m=1404442431h'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var MilestoneConfig = {"instances":[{"id":"milestone_widget-2","diff":945613,"message":"The meeting happened and probably rocked."}],"labels":{"year":"year","years":"years","month":"month","months":"months","day":"day","days":"days","hour":"hour","hours":"hours","minute":"minute","minutes":"minutes","second":"second","seconds":"seconds"}};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s1.wp.com/_static/??-eJx9jkEOwjAMBD9EMCDanhBvCYlpXRwn1AmF3xMOFYhDT7Y0s/bCnIyLklEyjAoeH+QwPbejbuAHhWISl55EgemGCveCBQcrnnH6l/OAoSqpXMBO9DmrwTKbgFIWl8Rx8dWq1MVQUTYTJn5tA8nK95l8j1khEKPmKPjdVlIpajZXtjSBDrWT9MusoXM47Y/dodm1bdONb/yKZWg='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>		<iframe src='https://widgets.wp.com/likes/master.html?ver=20160429#ver=20160429' scrolling='no' id='likes-master' name='likes-master' style='display:none;'></iframe>
+		<div id='likes-other-gravatars'><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+		<script>
+			var _comscore = _comscore || [];
+			_comscore.push({
+				c1: "2",
+				c2: "7518284"
+			});
+			(function() {
+				var s = document.createElement("script"),
+					el = document.getElementsByTagName("script")[0];
+				s.async = true;
+				s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+				el.parentNode.insertBefore(s, el);
+			})();
+		</script>
+		<noscript>
+			<p class="robots-nocontent"><img src="https://sb.scorecardresearch.com/p?c1=2&c2=7518284&c3=&c4=&c5=&c6=&c15=&cv=2.0&cj=1" alt="" style="display:none;" width="1" height="1" /></p>
+		</noscript><script src="https://stats.wp.com/w.js?54" type="text/javascript" async defer></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'48900262','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'48900262','v':'wpcom','tz':'-4','user_id':'0','post':'354','subd':'phillyjug'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGRVYVNrSFguN3FwSmQ5RGtNX3VQcj1yVzhiflM1THQtLGFdQ2toOXYlRixhb29MY2dLbUZzRFBzcnp0d3VsU29VVHxaQWtDbHJ3THhOLTQwZklmb0tfNiUwV0Q5MnRfPzZ3SjlSdV9xaHlwSXhoUk1Hdl9YSnIzXyV1cEk/JlN4d2lYUTJxWFVpb01VbTNLc3owTWJJXz9hSlBJeT9bZTFUUkdyeU9ic0k2MGFsQUlMbWdCWFJ3XyVqRUhUNF1DXU5IUUJwLHJHOFJjXXN2bTZhMGQ2UzhCTGMvWU5da19zTV9HflZ8RExRSTB8dF1jaGVPM0hJNlFpWUl1UTE/dHo/L3dKW2pMM0lFUm5semYseVA/dkd3UGFoPUw3LmI='}]);
+_stq.push([ 'clickTrackerInit', '48900262', '354' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

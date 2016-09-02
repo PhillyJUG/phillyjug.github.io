@@ -1,0 +1,306 @@
+<!doctype html>
+<html amp lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Building Cloud-Ready Systems Using Spring Technologies by Oleg Zhurakousky" />
+<meta property="og:url" content="https://phillyjug.com/2011/04/19/olegzcloud/" />
+<meta property="og:description" content="sponsored by ABSTRACT: Building Cloud-Ready Systems Using Spring Technologies Cloud deployment is forcing a fundamental shift in enterprise application architecture towards a highly distributed, hi…" />
+<meta property="article:published_time" content="2011-04-19T17:53:19+00:00" />
+<meta property="article:modified_time" content="2013-03-25T16:13:24+00:00" />
+<meta property="og:site_name" content="PhillyJUG" />
+<meta property="og:image" content="https://phillyjug.files.wordpress.com/2013/03/imgres-42.jpeg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:image" content="https://phillyjug.files.wordpress.com/2011/04/imgres-6.jpeg?w=240" />
+<meta name="twitter:card" content="summary" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+	<title>Building Cloud-Ready Systems Using Spring Technologies by Oleg Zhurakousky &#8211; PhillyJUG</title>
+		<link rel="canonical" href="../index.html" />
+		<script src="https://cdn.ampproject.org/v0.js" async></script>
+		<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+		<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"BlogPosting","mainEntityOfPage":"https:\/\/phillyjug.com\/2011\/04\/19\/olegzcloud\/","publisher":{"@type":"Organization","name":"PhillyJUG","logo":{"@type":"ImageObject","url":"https:\/\/s2.wp.com\/i\/favicons\/apple-touch-icon-60x60.png","width":60,"height":60}},"headline":"Building Cloud-Ready Systems Using Spring Technologies by Oleg Zhurakousky","datePublished":"2011-04-19T17:53:19+00:00","dateModified":"2013-03-25T12:13:24+00:00","author":{"@type":"Person","name":"fecak"},"image":{"@type":"ImageObject","url":"https:\/\/phillyjug.files.wordpress.com\/2011\/04\/imgres-6.jpeg","width":188,"height":66}}</script>
+	
+	<style amp-custom>
+	/* Merriweather fonts */
+@font-face {
+	font-family:'Merriweather';
+	src:url('https://s1.wp.com/i/fonts/merriweather/merriweather-regular-webfont.woff2') format('woff2'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-regular-webfont.woff') format('woff'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-regular-webfont.ttf') format('truetype'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-regular-webfont.svg#merriweatherregular') format('svg');
+	font-weight:400;
+	font-style:normal;
+}
+
+@font-face {
+	font-family:'Merriweather';
+	src:url('https://s1.wp.com/i/fonts/merriweather/merriweather-italic-webfont.woff2') format('woff2'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-italic-webfont.woff') format('woff'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-italic-webfont.ttf') format('truetype'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-italic-webfont.svg#merriweatheritalic') format('svg');
+	font-weight:400;
+	font-style:italic;
+}
+
+@font-face {
+	font-family:'Merriweather';
+	src:url('https://s1.wp.com/i/fonts/merriweather/merriweather-bold-webfont.woff2') format('woff2'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-bold-webfont.woff') format('woff'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-bold-webfont.ttf') format('truetype'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-bold-webfont.svg#merriweatherbold') format('svg');
+	font-weight:700;
+	font-style:normal;
+}
+
+@font-face {
+	font-family:'Merriweather';
+	src:url('https://s1.wp.com/i/fonts/merriweather/merriweather-bolditalic-webfont.woff2') format('woff2'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-bolditalic-webfont.woff') format('woff'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-bolditalic-webfont.ttf') format('truetype'),
+		url('https://s1.wp.com/i/fonts/merriweather/merriweather-bolditalic-webfont.svg#merriweatherbold_italic') format('svg');
+	font-weight:700;
+	font-style:italic;
+}
+
+/* Generic WP styling */
+amp-img.alignright { float: right; margin: 0 0 1em 1em; }
+amp-img.alignleft { float: left; margin: 0 1em 1em 0; }
+amp-img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+.alignright { float: right; }
+.alignleft { float: left; }
+.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+
+.wp-caption.alignleft { margin-right: 1em; }
+.wp-caption.alignright { margin-left: 1em; }
+
+.amp-wp-enforced-sizes {
+	/** Our sizes fallback is 100vw, and we have a padding on the container; the max-width here prevents the element from overflowing. **/
+	max-width: 100%;
+}
+
+.amp-wp-unknown-size img {
+	/** Worst case scenario when we can't figure out dimensions for an image. **/
+	/** Force the image into a box of fixed dimensions and use object-fit to scale. **/
+	object-fit: contain;
+}
+
+/* Template Styles */
+.amp-wp-content, .amp-wp-title-bar div {
+			max-width: 450px;
+	margin: 0 auto;
+	}
+
+body {
+	font-family: 'Merriweather', Serif;
+	font-size: 16px;
+	line-height: 1.8;
+	background: #fff;
+	color: #3d596d;
+	padding-bottom: 100px;
+}
+
+.amp-wp-content {
+	padding: 16px;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	font-weight: 400;
+	color: #3d596d;
+}
+
+.amp-wp-title {
+	margin: 36px 0 0 0;
+	font-size: 36px;
+	line-height: 1.258;
+	font-weight: 700;
+	color: #2e4453;
+}
+
+.amp-wp-meta {
+	margin-bottom: 16px;
+}
+
+p,
+ol,
+ul,
+figure {
+	margin: 0 0 24px 0;
+}
+
+a,
+a:visited {
+	color: #0087be;
+}
+
+a:hover,
+a:active,
+a:focus {
+	color: #33bbe3;
+}
+
+
+/* UI Fonts */
+.amp-wp-meta,
+nav.amp-wp-title-bar,
+.wp-caption-text {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+	font-size: 15px;
+}
+
+
+/* Meta */
+ul.amp-wp-meta {
+	padding: 24px 0 0 0;
+	margin: 0 0 24px 0;
+}
+
+ul.amp-wp-meta li {
+	list-style: none;
+	display: inline-block;
+	margin: 0;
+	line-height: 24px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 300px;
+}
+
+ul.amp-wp-meta li:before {
+	content: "\2022";
+	margin: 0 8px;
+}
+
+ul.amp-wp-meta li:first-child:before {
+	display: none;
+}
+
+.amp-wp-meta,
+.amp-wp-meta a {
+	color: #4f748e;
+}
+
+.amp-wp-meta .screen-reader-text {
+	/* from twentyfifteen */
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	width: 1px;
+}
+
+.amp-wp-byline amp-img {
+	border-radius: 50%;
+	border: 0;
+	background: #f3f6f8;
+	position: relative;
+	top: 6px;
+	margin-right: 6px;
+}
+
+/* Titlebar */
+nav.amp-wp-title-bar {
+	background: #0a89c0;
+	padding: 0 16px;
+}
+
+nav.amp-wp-title-bar div {
+	line-height: 54px;
+	color: #fff;
+}
+
+nav.amp-wp-title-bar a {
+	color: #fff;
+	text-decoration: none;
+}
+
+nav.amp-wp-title-bar .amp-wp-site-icon {
+	/** site icon is 32px **/
+	float: left;
+	margin: 11px 8px 0 0;
+	border-radius: 50%;
+}
+
+/* Captions */
+.wp-caption-text {
+	padding: 8px 16px;
+	font-style: italic;
+}
+
+
+/* Quotes */
+blockquote {
+	padding: 16px;
+	margin: 8px 0 24px 0;
+	border-left: 2px solid #87a6bc;
+	color: #4f748e;
+	background: #e9eff3;
+}
+
+blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+/* Other Elements */
+amp-carousel {
+	background: #000;
+}
+
+amp-iframe,
+amp-youtube,
+amp-instagram,
+amp-vine {
+	background: #f3f6f8;
+}
+
+amp-carousel > amp-img > img {
+	object-fit: contain;
+}
+
+.amp-wp-iframe-placeholder {
+	background: #f3f6f8 url( https://s2.wp.com/wp-content/plugins/amp/assets/images/placeholder-icon.png ) no-repeat center 40%;
+	background-size: 48px 48px;
+	min-height: 48px;
+}
+		</style>
+</head>
+<body>
+
+<nav class="amp-wp-title-bar">
+	<div>
+		<a href="../../../../../index.html">
+			
+			PhillyJUG		</a>
+	</div>
+</nav>
+<div class="amp-wp-content">
+	<h1 class="amp-wp-title">Building Cloud-Ready Systems Using Spring Technologies by Oleg Zhurakousky</h1>
+	<ul class="amp-wp-meta">
+		<li class="amp-wp-byline">
+		<amp-img src="https://secure.gravatar.com/avatar/164066510d280deb4f27bd6a614ed9ca?s=24&#038;d=retro&#038;r=pg" width="24" height="24" layout="fixed"></amp-img>
+		<span class="amp-wp-author">fecak</span>
+</li>
+<li class="amp-wp-posted-on">
+	<time datetime="2011-04-19T17:53:19+00:00">
+		5 years ago	</time>
+</li>
+	<li class="amp-wp-tax-category">
+		<span class="screen-reader-text">Categories:</span>
+		<a href="../../../../../category/meetings/index.html" rel="category tag">Meetings</a>	</li>
+
+	</ul>
+	<p><em><strong>sponsored by<br></br><a href="http://springsource.org"><amp-img class="aligncenter size-full wp-image-487 amp-wp-enforced-sizes" alt="SpringSource logo" src="https://phillyjug.files.wordpress.com/2011/04/imgres-6.jpeg?w=450" width="188" height="66" sizes="(min-width: 188px) 188px, 100vw"></amp-img></a></strong></em><a href="http://www.vmware.com/"><br></br></a></p>
+<p><strong>ABSTRACT</strong>: <em>Building Cloud-Ready Systems Using Spring Technologies</em><br></br>
+Cloud deployment is forcing a fundamental shift in enterprise application architecture towards a highly distributed, highly parallelized, horizontal scale-out services model. The Java classloader can no longer be the “spider in the middle of the web” as it was with traditional vertical scale-up JEE deployment. Traditional means of scale-out based on the JEE deployment model (Business Process Management, Enterprise Services Bus) are showing their limitations in cloud deployment because they simply re-create the same “spider in the middle of the web” problem at a different, higher level of abstraction.</p>
+<p>Additionally, when it comes to granularity of the services tier, there is no “one size fits all” answer. In fact, even for a single service, as business events change driving peaks and valleys in load, the level of granularity best suited for the deployment of that service will likely change as well. This means that Java components must be able to be flexibly composed into light-weight services that can be easily distributed and parallelized to take advantage of the cloud deployment model.</p>
+<p>Over the past several years, with the emergence of J2SE-based frameworks, open TCP-based protocols for messaging, and noSQL data stores, it is easier than ever to deliver cost-effective solutions that enable the flexible distribution and parallelization of your business applications within the cloud. This new breed of middleware allows you to base your cloud application architecture on distributed light-weight Java-based components that use simple, open messaging, rather than a centralized shared classloader, for inter-process communication and a distributed in-memory data fabric, rather than a centralized data store, for sharing data. This presentation will demonstrate how a legacy, vertically-integrated Java application can be quickly re-factored toward a more flexible, modular distributed architecture using Spring technologies that are optimized for the cloud.</p>
+<p><strong>SPEAKER BIO</strong>: <em>Oleg Zhurakousky</em><br></br><amp-img class="alignleft size-full wp-image-855 amp-wp-enforced-sizes" alt="Oleg" src="https://phillyjug.files.wordpress.com/2013/03/imgres-42.jpeg?w=450" width="80" height="80" sizes="(min-width: 80px) 80px, 100vw"></amp-img>Oleg is a Sr. Software Engineer with SpringSource/VMWare and has 14+ years of experience in software engineering across multiple disciplines including software architecture and design, consulting, business analysis and application development. He currently focuses on delivering simple but powerful Spring based solutions to the North American market.</p>
+<p>After starting his career in the world of COBOL &amp; CICS, Oleg has been focusing on professional Java and Java EE development since 1999. Since 2004 he has been heavily involved in using several open source technologies and platforms with Spring Framework at the forefront, while working on a number of projects around the world and spanning industries such as Telecommunication, Banking, Law Enforcement, US DOD and others.</p>
+<p>Oleg’s current passions include Event Driven Architecture (EDA), Messaging, Grid Computing, Test Driven development and Aspect Oriented Programming while his Spring passions are aligned with Spring Integration framework where Oleg is a core developer/committer as well as Spring AMQP where Oleg is a committer as well.</p>
+</div>
+	<amp-pixel src="https://pixel.wp.com/b.gif?rand=RANDOM&#038;host=phillyjug.com&#038;ref=DOCUMENT_REFERRER&#038;amp=1&#038;blog=48900262&#038;v=wpcom&#038;tz=-4&#038;user_id=0&#038;post=95&#038;subd=phillyjug"></amp-pixel>
+	<amp-pixel src="https://pixel.wp.com/b.gif?rand=RANDOM&#038;v=wpcom-no-pv&#038;crypt=UE40eW5QN0p8M2Y%2FRE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGRVYVNrSFguN3FwSmQ5RGtNX3VQcj1yVzhiflM1THQtLGFdQ2toOXYlRixhb29MY2dLbUZzRFBzcnp0d3VsU29VVHxaQWtDbHJ3THhOLTQwZklmb0tfNiUwV0Q5Mk5fYTRBRk1DRUNLeE50fD1rMW1YOVh5RkEyfEFwTzFLUk13Mjk%2FWmh6bFgrK1FDbz1Ob3kyc3p5UkN1RjUmMXx%2BNUdCP0N4cVlLVGJyfHJBSXppSi1wdys4VEFvcWdrdTZwVA%3D%3D"></amp-pixel>
+	</body>
+</html>
